@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/profile_photo.dart';
+import 'lib/screens/about_screen.dart';
 import '../widgets/profile_info.dart';
+import '../widgets/social_media_row.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -12,6 +13,17 @@ class ProfileScreen extends StatelessWidget {
         title: const Text('Profil Mahasiswa'),
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
+        actions: [
+          IconButton(
+            tooltip: 'About',
+            icon: const Icon(Icons.info_outline),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute<void>(builder: (_) => const AboutScreen()),
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -20,13 +32,16 @@ class ProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 24),
-              ProfilePhoto(radius: 60),
+              const CircleAvatar(
+                radius: 60,
+                backgroundImage: AssetImage('assets/images/hafidz.jpeg'),
+              ),
               const SizedBox(height: 24),
               const ProfileInfo(
-                name: 'Nama Mahasiswa',
-                nim: '21.11.0000',
+                name: 'Hafidz Afrizal',
+                nim: '26.21.1632',
                 programStudi: 'S1 Informatika',
-                email: 'email@students.amikom.ac.id',
+                email: 'h.afrizal716@students.amikom.ac.id',
                 lokasi: 'Yogyakarta, Indonesia',
               ),
               const SizedBox(height: 24),
@@ -46,6 +61,8 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(height: 16),
+              const SocialMediaRow(),
             ],
           ),
         ),

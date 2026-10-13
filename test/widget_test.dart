@@ -17,9 +17,18 @@ void main() {
     await tester.pumpWidget(const MyApp());
 
     expect(find.text('Profil Mahasiswa'), findsOneWidget);
-    expect(find.text('Nama Mahasiswa'), findsOneWidget);
-    expect(find.text('NIM: 21.11.0000'), findsOneWidget);
+    expect(find.text('Hafidz Afrizal'), findsOneWidget);
+    expect(find.text('NIM: 26.21.1632'), findsOneWidget);
     expect(find.text('S1 Informatika'), findsOneWidget);
-    expect(find.byIcon(Icons.person), findsOneWidget);
+
+    await tester.tap(find.byTooltip('About'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Tentang Aplikasi'), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.arrow_back));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Profil Mahasiswa'), findsOneWidget);
   });
 }
